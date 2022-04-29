@@ -14,6 +14,17 @@ ant
 java -jar './EventTest.jar'
 ```
 
+_______________________________
+# get QT Java Library "qtjambi"
+Before you run the Apache *"Ant"* command, In the *"lib"* folder you need a copy of the libraries needed for this project:
+
+ * [qtjambi-5.15.5.jar](https://search.maven.org/artifact/io.qtjambi/qtjambi)
+ * [qtjambi-native-linux-x64-5.15.5.jar](https://search.maven.org/artifact/io.qtjambi/qtjambi-native-linux-x64/)
+ * [qtjambi-native-windows-x64-5.15.5.jar](https://search.maven.org/artifact/io.qtjambi/qtjambi-native-windows-x64/)
+ * [qtjambi-native-macos-5.15.5.jar](https://search.maven.org/artifact/io.qtjambi/qtjambi-native-macos/)
+
+These were the latest versions at the time of writing, Search on [maven.org/search?q=g:io.qtjambi](https://search.maven.org/search?q=g:io.qtjambi%20qtjambi-native) for more up to date versions.
+
 ___________________________
 # How to Use Events In Java
 

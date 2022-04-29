@@ -12,7 +12,7 @@
 	IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,  either
 	express or implied. See the License for  the  specific  language
 	governing permissions and limitations under the License.
-____________________________________________________________*/package EventTest;
+__________________________________________________________*/package EventTestQT;
 import io.qt.widgets.*;
 //Creating and using Your own custom events in Java.
 

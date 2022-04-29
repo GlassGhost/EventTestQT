@@ -1,5 +1,5 @@
-EventTest
-=========
+EventTestQT
+===========
 
 EventTest is a [APACHE Licensed] Event Throwing example [Java] Program. It is also an example of the [Apache Ant] build system.
 
@@ -8,10 +8,10 @@ Build Instructions
 To git clone AND build AND run on a Debian(or Ubuntu) machine simply run the following:
 ```
 sudo apt-get install -y ant default-jdk git build-essential
-git clone https://github.com/GlassGhost/NoSpringBoot
+git clone https://github.com/GlassGhost/EventTestQT
 cd ./NoSpringBoot
 ant
-java -jar './EventTest.jar'
+java -jar './EventTestQT.jar'
 ```
 
 _______________________________

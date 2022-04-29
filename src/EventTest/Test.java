@@ -1,5 +1,5 @@
 /*_______________________________________________________________________License
-	Copyright © 2014 Roy Pfund
+	Copyright © 2022 Roy Pfund
 
 	Licensed under the Apache License, Version 2.0 (the  "License");
 	you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
 	express or implied. See the License for  the  specific  language
 	governing permissions and limitations under the License.
 ____________________________________________________________*/package EventTest;
+import io.qt.widgets.*;
 //Creating and using Your own custom events in Java.
 
 //Optional: sender & receiver in same scope
@@ -24,6 +25,10 @@ ____________________________________________________________*/package EventTest;
 		thrower.addThrowListener(catcher);
 
 		thrower.Throw();
+        QApplication.initialize(args);
+        QMessageBox.information(null, "QtJambi", "Hello World!");
+        QApplication.shutdown();
+		
 	}
 }
 

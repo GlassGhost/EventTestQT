@@ -29,8 +29,9 @@ interface ThrowListener {
 	List<ThrowListener> listeners = new ArrayList<ThrowListener>();
 	public void addThrowListener(ThrowListener toAdd){ listeners.add(toAdd); }
 	//Set of functions that Throw Events.
-		public void Throw(){ for (ThrowListener hl : listeners) hl.Catch();
+		public void Throw(){
 			System.out.println("Something thrown");
+            for (ThrowListener hl : listeners) hl.Catch();
 		}
 ////Optional: 2 things to send events to a class that is a member of the current class
 ////instantiation of a Catcher object

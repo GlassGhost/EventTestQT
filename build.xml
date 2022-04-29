@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--*******************************License(s)***********************************
-	Copyright © 2014 Roy Pfund
+	Copyright © 2022 Roy Pfund
 
 	Licensed under the Apache License, Version 2.0 (the  "License");
 	you may not use this file except in compliance with the License.
@@ -34,16 +34,18 @@ Also, some testing code needs to be added.
 		<pathelement location="${mysql.jdbc}"/>
 		<pathelement location="${junit.jar}"/>
 		<fileset dir="${lib}" includes="*.jar"/>
+		<fileset dir="${rsrc}" includes="*"/>
 	</path>
 
 <target name="compile"
 	description="Compile all Java source files into class files in build dir">
 	<mkdir dir="${build}"/><!--make the directory if it does not already exist.-->
+	<mkdir dir="${rsrc}"/><!--make the directory if it does not already exist.-->
 	<javac srcdir="${src}"
 	destdir="${build}"
 	debug="${compile.debug}"
 	includeantruntime="false"
-	source="1.7">
+	source="7">
 		<classpath refid="compile.classpath"/>
 	</javac>
 </target>
@@ -51,6 +53,28 @@ Also, some testing code needs to be added.
 <target name="package"
 depends="compile"
 description="builds the jar executable, and makes the manifest file" >
+    <!-- taken from http://martin.ankerl.com/2005/11/30/howto-create-manifestmf-classpath-from-ant/ -->
+    <!-- create a property containing all .jar files, prefix lib/, and seperated with a space -->
+    <pathconvert property="libs.project" pathsep=" ">
+      <mapper>
+        <chainedmapper>
+          <!-- remove absolute path -->
+          <flattenmapper />
+          <!-- add lib/ prefix -->
+          <globmapper from="*" to="./lib/*" />
+        </chainedmapper>
+      </mapper>
+
+      <path>
+
+        <!-- lib contains all jar files, in several subdirectories -->
+        <fileset dir="lib">
+          <include name="**/*.jar" />
+        </fileset>
+      </path>
+    </pathconvert>
+                
+
 	<jar destfile="${cwd}/${ant.project.name}.jar" basedir="${build}">
 <!--		<zipgroupfileset dir="${lib}" includes="*.jar"/>-->
 		<fileset dir="${cwd}">
@@ -65,13 +89,16 @@ description="builds the jar executable, and makes the manifest file" >
 		<manifest>
 			<attribute name="Created-By" value=""/>
 			<attribute name="Main-Class" value="${ant.project.name}.${Main-Class}"/>
-			<attribute name="Class-Path" value="${lib}/*.jar"/>
+			<attribute name="Class-Path" value="${libs.project}"/>
 		</manifest>
 	</jar>
 	<chmod file="${cwd}/${ant.project.name}.jar" perm="755"/>
 </target>
 
 <target name="clean" description="Deletes previous build">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
 	<delete verbose="true">
 		<fileset dir="${build}"/>
 	</delete>
